@@ -11,8 +11,9 @@ public class WordCounter {
     WordCounter(String text){
         this.text = text;
     }
+
     public void Count(){
-        words = text.split(" ");
+        words = text.split("\\s+");
         for(String s: words){
             int count = words_col.containsKey(s) ? words_col.get(s) : 0;
             words_col.put(s,count+1);
