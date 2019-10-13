@@ -1,0 +1,16 @@
+Для Intellij IDEA:
+
+1) file -> settings -> Path Variables -> "+" -> "Something name" and Path for "Путь к JavaFX/lib" -> Apply -> OK
+
+2) file -> Project Structure -> Librares -> "+" -> Path for "Путь к JavaFX/lib" -> Apply -> OK
+
+3) run -> edit configuration -> VM options -> 
+
+Прописать:
+
+--module-path
+Path for "Путь к JavaFX/lib"
+--add-modules
+javafx.controls,
+...,
+javafx.fxml
