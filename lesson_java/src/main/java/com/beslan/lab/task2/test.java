@@ -5,6 +5,6 @@ public class test {
         Book book = new Book("Lermontov");
         book.out_(book.author);
         WordCounter wordcounter = new WordCounter("mom");
-        wordcounter.Count();
+//        wordcounter.Count();
     }
 }

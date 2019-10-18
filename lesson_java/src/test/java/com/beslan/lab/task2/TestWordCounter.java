@@ -7,28 +7,27 @@ public class TestWordCounter {
     @Test
     public void TestCount(){
 //------------------
-        WordCounter test_words_count = new WordCounter("mom rick rick2  mom   mom dad  did  rick    rock  dad ");
-        test_words_count.Count();
-        Assertions.assertEquals(3,test_words_count.words_col.get("mom"));
-        Assertions.assertEquals(2,test_words_count.words_col.get("rick"));
-        Assertions.assertEquals(1,test_words_count.words_col.get("rick2"));
-        Assertions.assertEquals(2,test_words_count.words_col.get("dad"));
-        Assertions.assertEquals(1,test_words_count.words_col.get("did"));
-        Assertions.assertEquals(1,test_words_count.words_col.get("rock"));
+        WordCounter counter = new WordCounter("mom rick rick2  mom   mom dad  did  rick    rock  dad ");
+        Assertions.assertEquals(3,counter.col("mom"));
+        Assertions.assertEquals(2,counter.col("rick"));
+        Assertions.assertEquals(1,counter.col("rick2"));
+        Assertions.assertEquals(2,counter.col("dad"));
+        Assertions.assertEquals(1,counter.col("did"));
+        Assertions.assertEquals(1,counter.col("rock"));
+        System.out.println(counter);
 //-------------------
-        WordCounter test2_words_count = new WordCounter("dad");
-        test2_words_count.Count();
-        Assertions.assertEquals(null,test2_words_count.words_col.get("mom"));
-        Assertions.assertEquals(null,test2_words_count.words_col.get("rick"));
-        Assertions.assertEquals(null,test2_words_count.words_col.get("rick2"));
-        Assertions.assertEquals(1,test2_words_count.words_col.get("dad"));
-        Assertions.assertEquals(null,test2_words_count.words_col.get("did"));
-        Assertions.assertEquals(null,test2_words_count.words_col.get("rock"));
+        counter = new WordCounter("dad");
+        Assertions.assertEquals((Integer) null,counter.col("mom"));
+        Assertions.assertEquals((Integer) null,counter.col("mom"));
+        Assertions.assertEquals((Integer) null,counter.col("rick"));
+        Assertions.assertEquals((Integer) null,counter.col("rick2"));
+        Assertions.assertEquals(1,counter.col("dad"));
+        Assertions.assertEquals((Integer) null,counter.col("did"));
+        Assertions.assertEquals((Integer) null,counter.col("rock"));
 //-------------------
-        WordCounter test3_words_count = new WordCounter("doDDo Azart  Port   QuiZ");
-        test3_words_count.Count();
-        Assertions.assertEquals(null,test3_words_count.words_col.get("doddo"));
-        Assertions.assertEquals(1,test3_words_count.words_col.get("doDDo"));
-        Assertions.assertEquals(null,test3_words_count.words_col.get("Quiz"));
+        counter = new WordCounter("doDDo Azart  Port   QuiZ");
+        Assertions.assertEquals((Integer) null,counter.col("doddo"));
+        Assertions.assertEquals(1,counter.col("doDDo"));
+        Assertions.assertEquals((Integer) null,counter.col("Quiz"));
     }
 }
