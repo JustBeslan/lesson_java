@@ -109,7 +109,6 @@ public class Schedule {
             for (Group group : lesson.group) System.out.print(group.number_group + " ");
             System.out.println("\n");
         }
-    //        System.out.println(lessons1.get(0).subject);
     }
     private static Group find(Group[] groups, String name){
         for (Group group : groups)

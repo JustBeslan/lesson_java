@@ -19,7 +19,6 @@ class Human{
     String name;
 }
 class Educator extends Human{
-//    Subject SubjectEducator;
     Educator(String name){
         this.name = name;
     }
