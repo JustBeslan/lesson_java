@@ -25,11 +25,10 @@ class Educator extends Human{
 }
 
 class Student extends Human{
+    int id;
     String department;
-    Student(String name){
-        this.name = name;
-    }
-    Student(String name, String department){
+    Student(int id, String name, String department){
+        this.id = id;
         this.name = name;
         this.department = department;
     }
@@ -40,7 +39,7 @@ class Group{
     int number_group;
 }
 
-public class Lesson {
+class Lesson {
     LocalDateTime localDateTime;
     LocalTime localTime;
     Group[] group;
@@ -49,14 +48,13 @@ public class Lesson {
     DayOfWeek dayOfWeek;
     int number;
 
-
-    Lesson(Subject subject, LocalDateTime localDateTime, Group[] group, Educator educator, int number) {
-        this.localDateTime = localDateTime;
-        this.group = group;
-        this.subject = subject;
-        this.educator = educator;
-        this.number = number;
-    }
+//    Lesson(Subject subject, LocalDateTime localDateTime, Group[] group, Educator educator, int number) {
+//        this.localDateTime = localDateTime;
+//        this.group = group;
+//        this.subject = subject;
+//        this.educator = educator;
+//        this.number = number;
+//    }
     Lesson(Subject subject,DayOfWeek dayOfWeek, LocalTime localTime, Group[] group, Educator educator, int number) {
         this.localTime = localTime;
         this.dayOfWeek = dayOfWeek;

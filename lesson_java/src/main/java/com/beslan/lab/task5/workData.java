@@ -1,28 +1,72 @@
 package com.beslan.lab.task5;
 
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Arrays;
-
 import static java.time.DayOfWeek.*;
 
-public class Schedule {
-    public static void main(String[] args) {
-        Group group42 = new Group();
-        group42.number_group = 42;
-        group42.students = new Student[]{
-                new Student("Иван","КИТ"),
-                new Student("Даниил","КИТ"),
-                new Student("Беслан","КИТ")
-        };
+class workData {
+    private Group[] groups = new Group[0];
+    private static int idCounter = 0;
 
-        Group group41 = new Group();
-        group41.number_group = 41;
-        group41.students = new Student[]{
-                new Student("Игорь","КПМ"),
-                new Student("Денис","КИТ"),
-                new Student("Александр","КИТ")
-        };
+    public static int createID(){return idCounter++;}
+    public Group[] getGroups() {return groups;}
+
+    public Group createGroup(int numberGroup, Student ... students){
+        Group group = new Group();
+        group.number_group = numberGroup;
+        group.students = students;
+
+        Group[] groups1 = new Group[1];
+        if (groups != null) groups1 = Arrays.copyOf(groups,groups.length+1);
+        
+        groups1[groups.length] = group;
+        groups = groups1;
+        return group;
+    }
+
+    public void deleteGroup(int numberGroup){
+        int i, j;
+        for (i = j = 0; j < groups.length; ++j) if (groups[j].number_group != numberGroup) groups[i++] = groups[j];
+        groups = Arrays.copyOf(groups, i);
+    }
+
+    public void addStudent(int numberGroup,Student student){
+        Student[] students;
+        for (Group group : groups){
+            if (group.number_group == numberGroup){
+                students = Arrays.copyOf(group.students,group.students.length+1);
+                students[group.students.length] = student;
+                group.students = students;
+            }
+        }
+    }
+    public void deleteStudent(String name, String department){
+        int i, j;
+        for (Group group : groups) {
+            for (i = j = 0; j < group.students.length; ++j) {
+                if (!group.students[j].name.equals(name) && !group.students[j].department.equals(department)) group.students[++i] = group.students[j]; break;
+            }
+        }
+    }
+    public void deleteStudent(int id){
+        int i, j;
+        for (Group group : groups) {
+            for (i = j = 0; j < group.students.length; ++j) {
+                if (group.students[j].id != id) group.students[++i] = group.students[j]; break;
+            }
+        }
+    }
+    public void createLesson(){
+        Group group42 = createGroup(42);
+//                new Student(createID(),"Иван","КИТ"),
+//                new Student(createID(),"Даниил","КИТ"),
+//                new Student(createID(),"Беслан","КИТ")
+//        );
+        Group group41 = createGroup(41);
+//                new Student(createID(),"Игорь","КПМ"),
+//                new Student(createID(),"Денис","КИТ"),
+//                new Student(createID(),"Александр","КИТ")
+//        );
 
         Educator kostenko = new Educator("Костенко");
         Educator sinitsa = new Educator("Синица");
@@ -36,15 +80,6 @@ public class Schedule {
         Educator garkusha = new Educator("Гаркуша");
         Educator kesiyan = new Educator("Кесиян");
 
-//        LocalDateTime calculusOfVariationsTime = LocalDateTime.of(2019, Month.OCTOBER,28,8,00,00);
-//        LocalDateTime programmingJavaTime = LocalDateTime.of(2019, Month.OCTOBER,24,8,00,00);
-//        LocalDateTime knoledgeBaseLectionTime = LocalDateTime.of(2019, Month.OCTOBER,24,13,10,00);
-//        LocalDateTime functionProgrammingTime = LocalDateTime.of(2019, Month.OCTOBER,25,11,30,00);
-//        Lesson[] lessons = new Lesson[]{
-//                new Lesson(Subject.ProgrammingOnJava,programmingJavaTime,new Group[]{group42},golovin,1),
-//                new Lesson(Subject.KnoledgeBase,knoledgeBaseLectionTime,new Group[]{group42},kostenko,4),
-//                new Lesson(Subject.Web,functionProgrammingTime,new Group[]{group42},sinitsa,3),
-//        };
         LocalTime firstLessonTime = LocalTime.of(8,0,0);
         LocalTime secondLessonTime = LocalTime.of(9,40,0);
         LocalTime thirdLessonTime = LocalTime.of(11,30,0);
@@ -76,44 +111,5 @@ public class Schedule {
                 new Lesson(Subject.AccountingReportAutomation,FRIDAY,fifthLessonTime,new Group[]{group42},kesiyan,5),
                 new Lesson(Subject.FunctionProgramming,FRIDAY,sixthLessonTime,new Group[]{group42},sinitsa,6),
         };
-
-//        System.out.println(THURSDAY.getValue());
-//        System.out.println(SATURDAY.getValue());
-//        System.out.println(MONDAY.getValue());
-
-        String studentName = "Денис";
-        Group groupStudent = find(new Group[]{group41,group42},studentName);
-        if(groupStudent != null){
-            System.out.println("Number Group : "+groupStudent.number_group);
-            ArrayList<Lesson> scheduleStudent = new ArrayList<>();
-            for (Lesson lesson : lessons) {
-                if (Arrays.stream(lesson.group).anyMatch(group1 -> group1 == groupStudent)){
-                    scheduleStudent.add(lesson);
-                    System.out.println(lesson.dayOfWeek+"----"+lesson.subject);
-                }
-            }
-        }
-        System.out.println("\n");
-        String educatorName = "Лебедев";
-        ArrayList<Lesson> scheduleEducator = new ArrayList<>();
-        for (Lesson lesson : lessons)
-            if (lesson.educator.name.equals(educatorName))
-                scheduleEducator.add(lesson);
-
-        System.out.println(educatorName);
-        for (Lesson lesson : scheduleEducator){
-            System.out.println(lesson.dayOfWeek);
-            System.out.println("Number Lesson: "+lesson.number);
-            System.out.println("Name Lesson : "+lesson.subject);
-            System.out.print("Number Group : ");
-            for (Group group : lesson.group) System.out.print(group.number_group + " ");
-            System.out.println("\n");
-        }
-    }
-    private static Group find(Group[] groups, String name){
-        for (Group group : groups)
-            for(Student student : group.students)
-                if (student.name.equals(name)) return group;
-        return null;
     }
 }
