@@ -25,8 +25,8 @@ class Educator extends Human{
 }
 
 class Student extends Human{
-    int id;
-    String department;
+    private int id;
+    private String department;
     Student(int id, String name, String department){
         this.id = id;
         this.name = name;
@@ -41,7 +41,7 @@ class Group{
 
 class Lesson {
     LocalDateTime localDateTime;
-    LocalTime localTime;
+    private LocalTime localTime;
     Group[] group;
     Subject subject;
     Educator educator;

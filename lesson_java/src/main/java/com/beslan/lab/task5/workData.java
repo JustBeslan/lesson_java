@@ -5,32 +5,34 @@ import java.util.Arrays;
 import static java.time.DayOfWeek.*;
 
 class workData {
-    private Group[] groups = new Group[0];
+    private static Group[] groups = new Group[0];
     private static int idCounter = 0;
+    private static Lesson[] lessons;
 
-    public static int createID(){return idCounter++;}
-    public Group[] getGroups() {return groups;}
+    static int createID(){return idCounter++;}
+    static Lesson[] getLessons() {return lessons; }
+    static Group[] getGroups() {return groups;}
 
-    public Group createGroup(int numberGroup, Student ... students){
+    private static Group createGroup(int numberGroup, Student... students){
         Group group = new Group();
         group.number_group = numberGroup;
         group.students = students;
 
         Group[] groups1 = new Group[1];
         if (groups != null) groups1 = Arrays.copyOf(groups,groups.length+1);
-        
+
         groups1[groups.length] = group;
         groups = groups1;
         return group;
     }
 
-    public void deleteGroup(int numberGroup){
+    public static void deleteGroup(int numberGroup){
         int i, j;
         for (i = j = 0; j < groups.length; ++j) if (groups[j].number_group != numberGroup) groups[i++] = groups[j];
         groups = Arrays.copyOf(groups, i);
     }
 
-    public void addStudent(int numberGroup,Student student){
+    static void addStudent(int numberGroup, Student student){
         Student[] students;
         for (Group group : groups){
             if (group.number_group == numberGroup){
@@ -40,33 +42,22 @@ class workData {
             }
         }
     }
-    public void deleteStudent(String name, String department){
+    static void deleteStudent(String name){
         int i, j;
         for (Group group : groups) {
             for (i = j = 0; j < group.students.length; ++j) {
-                if (!group.students[j].name.equals(name) && !group.students[j].department.equals(department)) group.students[++i] = group.students[j]; break;
+                if (group.students[j].name.equals(name)) {
+                    Student[] n = new Student[group.students.length - 1];
+                    System.arraycopy(group.students, 0, n, 0, j );
+                    System.arraycopy(group.students, j+1, n, j, group.students.length - j-1);
+                    group.students = n;
+                }
             }
         }
     }
-    public void deleteStudent(int id){
-        int i, j;
-        for (Group group : groups) {
-            for (i = j = 0; j < group.students.length; ++j) {
-                if (group.students[j].id != id) group.students[++i] = group.students[j]; break;
-            }
-        }
-    }
-    public void createLesson(){
+    static void createLesson(){
         Group group42 = createGroup(42);
-//                new Student(createID(),"Иван","КИТ"),
-//                new Student(createID(),"Даниил","КИТ"),
-//                new Student(createID(),"Беслан","КИТ")
-//        );
         Group group41 = createGroup(41);
-//                new Student(createID(),"Игорь","КПМ"),
-//                new Student(createID(),"Денис","КИТ"),
-//                new Student(createID(),"Александр","КИТ")
-//        );
 
         Educator kostenko = new Educator("Костенко");
         Educator sinitsa = new Educator("Синица");
@@ -87,7 +78,7 @@ class workData {
         LocalTime fifthLessonTime = LocalTime.of(15,0,0);
         LocalTime sixthLessonTime = LocalTime.of(16,40,0);
 
-        Lesson[] lessons = new Lesson[]{
+        lessons = new Lesson[]{
                 new Lesson(Subject.calculusOfVariations,MONDAY,secondLessonTime,new Group[]{group42},lebedev,2),
                 new Lesson(Subject.calculusOfVariations,MONDAY,thirdLessonTime,new Group[]{group41,group42},lebedev,3),
                 new Lesson(Subject.Web,MONDAY,fourthLessonTime,new Group[]{group42},sinitsa,4),
