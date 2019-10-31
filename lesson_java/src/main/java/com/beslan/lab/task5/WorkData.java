@@ -4,7 +4,7 @@ import java.time.LocalTime;
 import java.util.Arrays;
 import static java.time.DayOfWeek.*;
 
-class workData {
+class WorkData {
     private static Group[] groups = new Group[0];
     private static int idCounter = 0;
     private static Lesson[] lessons;

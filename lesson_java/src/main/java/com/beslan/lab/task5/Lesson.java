@@ -40,8 +40,8 @@ class Group{
 }
 
 class Lesson {
-    LocalDateTime localDateTime;
-    private LocalTime localTime;
+//    LocalDateTime localDateTime;
+    LocalTime localTime;
     Group[] group;
     Subject subject;
     Educator educator;

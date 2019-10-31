@@ -3,9 +3,9 @@ package com.beslan.lab.task2;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class TestWordCounter {
+class TestWordCounter {
     @Test
-    public void TestCount(){
+    void TestCount(){
 //------------------
         WordCounter counter = new WordCounter("mom rick rick2  mom   mom dad  did  rick    rock  dad ");
         Assertions.assertEquals(3,counter.col("mom"));
