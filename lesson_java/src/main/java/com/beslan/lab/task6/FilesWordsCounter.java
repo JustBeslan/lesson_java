@@ -23,6 +23,9 @@ class FilesWordsCounter {
         this.pathDir = pathDir;
         this.wordsStatistic = Solution();
     }
+    public Integer col(String word){
+        return wordsStatistic.get(word);
+    }
     @NotNull
     private Map<String,Integer> Solution() throws IOException {
         Map<String,Integer> info = new HashMap<>();
