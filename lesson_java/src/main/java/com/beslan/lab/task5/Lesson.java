@@ -3,6 +3,18 @@ package com.beslan.lab.task5;
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 
+enum Subject {
+    calculusOfVariations,
+    Web,
+    Delphi,
+    Oracle,
+    MathematicalMethodsOfInformationSecurity,
+    ProgrammingOnJava,
+    KnowledgeBase,
+    FunctionProgramming,
+    AccountingReportAutomation
+}
+
 class Lesson {
 //    LocalDateTime localDateTime;
     LocalTime localTime;
@@ -27,4 +39,5 @@ class Lesson {
         this.educator = educator;
         this.number = number;
     }
+
 }

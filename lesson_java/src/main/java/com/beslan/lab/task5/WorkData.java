@@ -2,6 +2,7 @@ package com.beslan.lab.task5;
 
 import java.time.LocalTime;
 import java.util.Arrays;
+
 import static java.time.DayOfWeek.*;
 
 class WorkData {
@@ -79,28 +80,28 @@ class WorkData {
         LocalTime sixthLessonTime = LocalTime.of(16,40,0);
 
         lessons = new Lesson[]{
-                new Lesson(Subject.calculusOfVariations,MONDAY,secondLessonTime,new Group[]{group42},lebedev,2),
-                new Lesson(Subject.calculusOfVariations,MONDAY,thirdLessonTime,new Group[]{group41,group42},lebedev,3),
-                new Lesson(Subject.Web,MONDAY,fourthLessonTime,new Group[]{group42},sinitsa,4),
-                new Lesson(Subject.Web,MONDAY,fifthLessonTime,new Group[]{group42},sinitsa,5),
+                new Lesson(Lesson.Subject.calculusOfVariations, MONDAY, secondLessonTime, new Group[]{group42}, lebedev, 2),
+                new Lesson(Lesson.Subject.calculusOfVariations, MONDAY, thirdLessonTime, new Group[]{group41, group42}, lebedev, 3),
+                new Lesson(Lesson.Subject.Web, MONDAY, fourthLessonTime, new Group[]{group42}, sinitsa, 4),
+                new Lesson(Lesson.Subject.Web, MONDAY, fifthLessonTime, new Group[]{group42}, sinitsa, 5),
 
-                new Lesson(Subject.Delphi,TUESDAY,firstLessonTime,new Group[]{group42},podkolzin,1),
-                new Lesson(Subject.Delphi,TUESDAY,secondLessonTime,new Group[]{group42},podkolzin,2),
-                new Lesson(Subject.Oracle,TUESDAY,thirdLessonTime,new Group[]{group41,group42},bessarabov,3),
+                new Lesson(Lesson.Subject.Delphi, TUESDAY, firstLessonTime, new Group[]{group42}, podkolzin, 1),
+                new Lesson(Lesson.Subject.Delphi, TUESDAY, secondLessonTime, new Group[]{group42}, podkolzin, 2),
+                new Lesson(Lesson.Subject.Oracle, TUESDAY, thirdLessonTime, new Group[]{group41, group42}, bessarabov, 3),
 
-                new Lesson(Subject.KnowledgeBase,WEDNESDAY,secondLessonTime,new Group[]{group42},lebedeva,2),
-                new Lesson(Subject.MathematicalMethodsOfInformationSecurity,WEDNESDAY,thirdLessonTime,new Group[]{group42},osipyan,3),
-                new Lesson(Subject.MathematicalMethodsOfInformationSecurity,WEDNESDAY,fourthLessonTime,new Group[]{group42},osipyan,4),
+                new Lesson(Lesson.Subject.KnowledgeBase, WEDNESDAY, secondLessonTime, new Group[]{group42}, lebedeva, 2),
+                new Lesson(Lesson.Subject.MathematicalMethodsOfInformationSecurity, WEDNESDAY, thirdLessonTime, new Group[]{group42}, osipyan, 3),
+                new Lesson(Lesson.Subject.MathematicalMethodsOfInformationSecurity, WEDNESDAY, fourthLessonTime, new Group[]{group42}, osipyan, 4),
 
-                new Lesson(Subject.ProgrammingOnJava,THURSDAY,firstLessonTime,new Group[]{group42},golovin,1),
-                new Lesson(Subject.Oracle,THURSDAY,secondLessonTime,new Group[]{group42},zanin,2),
-                new Lesson(Subject.ProgrammingOnJava,THURSDAY,thirdLessonTime,new Group[]{group41,group42},garkusha,3),
-                new Lesson(Subject.KnowledgeBase,THURSDAY,fourthLessonTime,new Group[]{group41,group42},kostenko,4),
+                new Lesson(Lesson.Subject.ProgrammingOnJava, THURSDAY, firstLessonTime, new Group[]{group42}, golovin, 1),
+                new Lesson(Lesson.Subject.Oracle, THURSDAY, secondLessonTime, new Group[]{group42}, zanin, 2),
+                new Lesson(Lesson.Subject.ProgrammingOnJava, THURSDAY, thirdLessonTime, new Group[]{group41, group42}, garkusha, 3),
+                new Lesson(Lesson.Subject.KnowledgeBase, THURSDAY, fourthLessonTime, new Group[]{group41, group42}, kostenko, 4),
 
-                new Lesson(Subject.FunctionProgramming,FRIDAY,thirdLessonTime,new Group[]{group42},sinitsa,3),
-                new Lesson(Subject.AccountingReportAutomation,FRIDAY,fourthLessonTime,new Group[]{group41,group42},kesiyan,4),
-                new Lesson(Subject.AccountingReportAutomation,FRIDAY,fifthLessonTime,new Group[]{group42},kesiyan,5),
-                new Lesson(Subject.FunctionProgramming,FRIDAY,sixthLessonTime,new Group[]{group42},sinitsa,6),
+                new Lesson(Lesson.Subject.FunctionProgramming, FRIDAY, thirdLessonTime, new Group[]{group42}, sinitsa, 3),
+                new Lesson(Lesson.Subject.AccountingReportAutomation, FRIDAY, fourthLessonTime, new Group[]{group41, group42}, kesiyan, 4),
+                new Lesson(Lesson.Subject.AccountingReportAutomation, FRIDAY, fifthLessonTime, new Group[]{group42}, kesiyan, 5),
+                new Lesson(Lesson.Subject.FunctionProgramming, FRIDAY, sixthLessonTime, new Group[]{group42}, sinitsa, 6),
         };
     }
 }
