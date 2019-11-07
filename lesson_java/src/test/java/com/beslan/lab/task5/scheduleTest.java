@@ -10,22 +10,21 @@ import java.util.Set;
 
 class scheduleTest {
     @Test
-    void get() {
+    void scheduleStudentTest() {
         Schedule schedule = new Schedule(1,"Беслан");
-        schedule.get();
-        Set<Lesson> set = new HashSet<>(schedule.getScheduleStudent());
+        Set<Lesson> scheduleStudent = new HashSet<>(schedule.getScheduleStudent());
 
         Set<DayOfWeek> dayOfWeeks = new HashSet<>();
         Set<Lesson.Subject> subjects = new HashSet<>();
-        for (Lesson lesson : set){
-            dayOfWeeks.add(lesson.dayOfWeek);
-            subjects.add(lesson.subject);
-        }
+        scheduleStudent.forEach(lesson -> {
+            dayOfWeeks.add(lesson.getDayOfWeek());
+            subjects.add(lesson.getSubject());
+        });
 
-        Set<Lesson.Subject> subjects1 = new HashSet<>(Arrays.asList(Lesson.Subject.values()));
+        HashSet subjects1 = new HashSet<>(Arrays.asList(Lesson.Subject.values()));
         Set<DayOfWeek> dayOfWeeks1 = new HashSet<>(Arrays.asList(DayOfWeek.values()).subList(0, DayOfWeek.values().length - 2));
 
-        Assertions.assertEquals(set.size(),18);
+        Assertions.assertEquals(scheduleStudent.size(), 18);
 
         Assertions.assertEquals(dayOfWeeks.size(),5);
         Assertions.assertEquals(dayOfWeeks,dayOfWeeks1);
@@ -33,6 +32,4 @@ class scheduleTest {
         Assertions.assertEquals(subjects.size(),9);
         Assertions.assertEquals(subjects,subjects1);
     }
-
-    enum subject {}
 }

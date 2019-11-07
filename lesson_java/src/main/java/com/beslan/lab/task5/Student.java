@@ -6,7 +6,7 @@ class Student extends Human {
 
     Student(int id, String name, String department) {
         this.id = id;
-        this.name = name;
+        this.setName(name);
         this.department = department;
     }
 }

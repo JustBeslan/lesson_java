@@ -21,13 +21,13 @@ class FilesWordsCounter {
 
     FilesWordsCounter(String pathDir) throws IOException {
         this.pathDir = pathDir;
-        this.wordsStatistic = Solution();
+        this.wordsStatistic = solution();
     }
     public Integer col(String word){
         return wordsStatistic.get(word);
     }
     @NotNull
-    private Map<String,Integer> Solution() throws IOException {
+    private Map<String, Integer> solution() throws IOException {
         Map<String,Integer> info = new HashMap<>();
         File folder = new File(pathDir);
         File[] listOfFiles = folder.listFiles();
