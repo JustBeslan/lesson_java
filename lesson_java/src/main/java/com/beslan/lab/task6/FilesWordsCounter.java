@@ -44,13 +44,14 @@ class FilesWordsCounter {
                 ArrayList<String> infoFromFile = streamInfoFromFile.collect(Collectors.toCollection(ArrayList::new));
                 for (String s : infoFromFile){
                     WordCounter wordCounter = new WordCounter(s);
-                    info = joinLists(info,wordCounter.getWords_col());
+                    info = joinMaps(info, wordCounter.getWords_col());
                 }
             }
         }
         return info;
     }
-    private Map<String,Integer> joinLists(Map<String,Integer> map1,Map<String,Integer> map2){
+
+    private Map<String, Integer> joinMaps(Map<String, Integer> map1, Map<String, Integer> map2) {
         Map<String,Integer> mapResult = new HashMap<>();
         if (map1 == null || map2 == null){throw new NullPointerException("One of maps is null");}
         if (map1.isEmpty()) return map2;
