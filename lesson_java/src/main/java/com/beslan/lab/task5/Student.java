@@ -2,11 +2,13 @@ package com.beslan.lab.task5;
 
 class Student extends Human {
     private int id;
-    private String department;
 
-    Student(int id, String name, String department) {
+    Student(int id, String name) {
         this.id = id;
         this.setName(name);
-        this.department = department;
+    }
+
+    public int getId() {
+        return id;
     }
 }

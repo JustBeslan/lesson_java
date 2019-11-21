@@ -7,15 +7,18 @@ import java.util.List;
 
 public class Human {
     private String name;
-    private String surname;
     private List<String> responsibility = new ArrayList<>();
     private List<Human> workers = new ArrayList<>();
 
-    public Human(@NotNull String name, List<String> responsibility, List<Human> workers) {
-        String[] fio = name.split(" ");
-        this.name = fio[0];
-        this.surname = fio[1];
+    public Human(@NotNull String name) {
+        this.name = name;
+    }
+
+    public void setResponsibility(List<String> responsibility) {
         this.responsibility = responsibility;
+    }
+
+    public void setWorkers(List<Human> workers) {
         this.workers = workers;
     }
 
@@ -28,7 +31,7 @@ public class Human {
     }
 
     public String getNameSurname() {
-        return (name + " " + surname);
+        return name;
     }
 
     public void addResponsibility(String newResponsibility) {

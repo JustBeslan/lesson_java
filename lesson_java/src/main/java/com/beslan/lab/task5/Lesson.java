@@ -5,13 +5,13 @@ import java.time.LocalTime;
 
 public class Lesson {
     private LocalTime localTime;
-    private Group[] group;
+    private Group group;
     private Subject subject;
     private Educator educator;
     private DayOfWeek dayOfWeek;
     private int number;
 
-    public Lesson(Subject subject, DayOfWeek dayOfWeek, LocalTime localTime, Group[] group, Educator educator, int number) {
+    public Lesson(Subject subject, DayOfWeek dayOfWeek, LocalTime localTime, Group group, Educator educator, int number) {
         this.localTime = localTime;
         this.dayOfWeek = dayOfWeek;
         this.group = group;
@@ -24,11 +24,7 @@ public class Lesson {
         return dayOfWeek;
     }
 
-    public void setDayOfWeek(DayOfWeek dayOfWeek) {
-        this.dayOfWeek = dayOfWeek;
-    }
-
-    public Group[] getGroup() {
+    public Group getGroup() {
         return group;
     }
 
@@ -57,7 +53,8 @@ public class Lesson {
         ProgrammingOnJava,
         KnowledgeBase,
         FunctionProgramming,
-        AccountingReportAutomation
+        AccountingReportAutomation,
+        English
     }
 
 }

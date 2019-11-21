@@ -12,14 +12,16 @@ public class Department {
     private List<String> programmingLanguages = new ArrayList<>();
     private List<String> Responsibility = new ArrayList<>();
 
-    public Department(int code) {
+    public Department(int code, List<Human> departmentLeadings) {
         this.code = code;
+        this.departmentLeadings = new ArrayList<>(departmentLeadings);
 
         if (this.code == 1) {
             Responsibility.add("Распределение задач между аналитиками");
             Responsibility.add("Рецензирование проектной документации");
             Responsibility.add("Разработка проектной документации");
             Responsibility.add("Рецензирование тестовых спецификаций");
+            setProgrammingLanguages("Python", "JavaScript", "HTML", "PHP", "CSS", "Go");
         }
 
         if (this.code == 2) {
@@ -27,6 +29,7 @@ public class Department {
             Responsibility.add("Рецензирование проектной документации");
             Responsibility.add("Разработка");
             Responsibility.add("Исправление ошибок");
+            setProgrammingLanguages("Python", "Java", "SQL", "Scala", "Perl");
         }
 
         if (this.code == 3) {
@@ -34,6 +37,7 @@ public class Department {
             Responsibility.add("Рецензирование проектной документации");
             Responsibility.add("Тестирование");
             Responsibility.add("Разработка тестовых спецификаций");
+            setProgrammingLanguages("Rational Suite TestStudio", "Rational Test RealTime", "Rational TestManager");
         }
     }
 
@@ -58,7 +62,7 @@ public class Department {
     }
 
     public void addLeadingDepartment(String name) {
-        Human leading = new Human(name, new ArrayList<>(), new ArrayList<>());
+        Human leading = new Human(name);
 
         if (this.code == 1) {
             leading.addResponsibility(Responsibility.get(0));
@@ -83,7 +87,7 @@ public class Department {
     }
 
     public void addWorkerDepartment(@NotNull Human leading, String name) {
-        Human worker = new Human(name, new ArrayList<>(), null);
+        Human worker = new Human(name);
 
         if (this.code == 1) {
             worker.addResponsibility(Responsibility.get(2));
