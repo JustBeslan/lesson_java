@@ -42,7 +42,7 @@ public class ISR1 {
         this.workers = workers;
     }
 
-    public void inFromFile() {
+    public void workJSON() {
         Gson gson = new Gson();
         String json = gson.toJson(this);
         try {

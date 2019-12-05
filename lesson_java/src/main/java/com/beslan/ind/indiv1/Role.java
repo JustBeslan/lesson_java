@@ -3,13 +3,13 @@ package com.beslan.ind.indiv1;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Department {
+public class Role {
     private double code;
     private List<String> Responsibility = new ArrayList<>();
     private String role;
     private List<Human> hisWorkers;
 
-    public Department(double code) {
+    public Role(double code) {
         this.code = code;
 
         if (code == 0) {

@@ -7,7 +7,7 @@ import java.util.*;
 public class Human {
     private int years;
     private String name;
-    private Map<Integer, Department> departmentsProject = new HashMap<>();
+    private Map<Integer, Role> roleInProjects = new HashMap<>();
 
     public Human(String name, int years) {
         this.name = name;
@@ -19,24 +19,24 @@ public class Human {
         System.out.println("Возраст : " + years + "\n");
         System.out.println("Проекты, над которыми " + name + " работает : \n");
         for (ISR1 project : projects) {
-            assert this.getDepartmentsProject().containsKey(project.getId());
+            assert this.getRoleInProjects().containsKey(project.getId());
             System.out.println("\t Название проекта : " + project.getName() + "\n");
-            System.out.println("\t Роль : " + departmentsProject.get(project.getId()).getRole() + "\n\n");
+            System.out.println("\t Роль : " + roleInProjects.get(project.getId()).getRole() + "\n\n");
             for (Human human : project.getWorkers().values()) {
-                Department department = human.getDepartmentsProject().get(project.getId());
-                if (department.getCode() == 0)
+                Role role = human.getRoleInProjects().get(project.getId());
+                if (role.getCode() == 0)
                     System.out.println("Менеджер проекта : " + human.getName());
             }
             for (Human human : project.getWorkers().values()) {
-                Department department = human.getDepartmentsProject().get(project.getId());
-                if ((department.getWorkers() != null) && ((department.getWorkers().contains(this))))
+                Role role = human.getRoleInProjects().get(project.getId());
+                if ((role.getWorkers() != null) && ((role.getWorkers().contains(this))))
                     System.out.println("Его TeamLead : " + human.getName());
             }
         }
     }
 
-    public Map<Integer, Department> getDepartmentsProject() {
-        return departmentsProject;
+    public Map<Integer, Role> getRoleInProjects() {
+        return roleInProjects;
     }
 
     public String getName() {
@@ -44,19 +44,19 @@ public class Human {
     }
 
     public void addProject(@NotNull ISR1 project, double idDepartment) {
-        Map<Integer, Human> res = project.getWorkers();
-        res.put(project.getWorkers().size() + 1, this);
-        project.setWorkers(res);
-        this.departmentsProject.put(project.getId(), new Department(idDepartment));
+        Map<Integer, Human> workersProject = project.getWorkers();
+        workersProject.put(project.getWorkers().size() + 1, this);
+        project.setWorkers(workersProject);
+        this.roleInProjects.put(project.getId(), new Role(idDepartment));
     }
 
     public Set<Human> findTeamLeadsProject(@NotNull List<ISR1> projects) {
         Set<Human> res = new HashSet<>();
         for (ISR1 project : projects) {
-            assert this.getDepartmentsProject().containsKey(project.getId());
+            assert this.getRoleInProjects().containsKey(project.getId());
             for (Human human1 : project.getWorkers().values()) {
-                if ((human1.getDepartmentsProject().get(project.getId()).getWorkers() != null) &&
-                        (human1.getDepartmentsProject().get(project.getId()).getWorkers().contains(this)))
+                if ((human1.getRoleInProjects().get(project.getId()).getWorkers() != null) &&
+                        (human1.getRoleInProjects().get(project.getId()).getWorkers().contains(this)))
                     res.add(human1);
             }
         }
