@@ -1,111 +1,82 @@
 package com.beslan.ind.indiv1;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Department {
-    private int numberHuman, code;
-    private List<Human> departmentLeadings = new ArrayList<>();
-    private List<String> programmingLanguages = new ArrayList<>();
+    private double code;
     private List<String> Responsibility = new ArrayList<>();
+    private String role;
+    private List<Human> hisWorkers;
 
-    public Department(int code, List<Human> departmentLeadings) {
+    public Department(double code) {
         this.code = code;
-        this.departmentLeadings = new ArrayList<>(departmentLeadings);
 
-        if (this.code == 1) {
+        if (code == 0) {
+            role = "Менеджер проекта";
+            Responsibility.add("Постановка задач перед участниками проекта");
+            Responsibility.add("Мониторинг работ");
+        }
+
+        if (code == 1.0) {
+            role = "Ведущий аналитик";
             Responsibility.add("Распределение задач между аналитиками");
             Responsibility.add("Рецензирование проектной документации");
             Responsibility.add("Разработка проектной документации");
-            Responsibility.add("Рецензирование тестовых спецификаций");
-            setProgrammingLanguages("Python", "JavaScript", "HTML", "PHP", "CSS", "Go");
+            hisWorkers = new ArrayList<>();
         }
 
-        if (this.code == 2) {
+        if (code == 1.1) {
+            role = "Аналитик";
+            Responsibility.add("Разработка проектной документации");
+            Responsibility.add("Рецензирование тестовых спецификаций");
+        }
+
+        if (code == 2.0) {
+            role = "Ведущий разработчик";
             Responsibility.add("Распределение задач между разработчиками");
             Responsibility.add("Рецензирование проектной документации");
             Responsibility.add("Разработка");
-            Responsibility.add("Исправление ошибок");
-            setProgrammingLanguages("Python", "Java", "SQL", "Scala", "Perl");
+            hisWorkers = new ArrayList<>();
         }
 
-        if (this.code == 3) {
+        if (code == 2.1) {
+            role = "Разработчик";
+            Responsibility.add("Рецензирование проектной документации");
+            Responsibility.add("Разработка");
+            Responsibility.add("Исправление ошибок");
+        }
+
+        if (code == 3.0) {
+            role = "Ведущий тестировщик";
             Responsibility.add("Распределение задач между тестировщиками");
             Responsibility.add("Рецензирование проектной документации");
             Responsibility.add("Тестирование");
             Responsibility.add("Разработка тестовых спецификаций");
-            setProgrammingLanguages("Rational Suite TestStudio", "Rational Test RealTime", "Rational TestManager");
+            hisWorkers = new ArrayList<>();
+        }
+
+        if (code == 3.1) {
+            role = "Тестировщик";
+            Responsibility.add("Рецензирование проектной документации");
+            Responsibility.add("Тестирование");
+            Responsibility.add("Разработка тестовых спецификаций");
         }
     }
 
-    public int getCode() {
+    public double getCode() {
         return code;
     }
 
-    public List<String> getResponsibility() {
-        return Responsibility;
+    public List<Human> getWorkers() {
+        return hisWorkers;
     }
 
-    public List<Human> getDepartmentLeadings() {
-        return departmentLeadings;
+    public void setWorkers(List<Human> workers) {
+        this.hisWorkers = workers;
     }
 
-    public void setProgrammingLanguages(String... strings) {
-        this.programmingLanguages = Arrays.asList(strings);
-    }
-
-    public void addProgrammingLanguages(String language) {
-        this.programmingLanguages.add(language);
-    }
-
-    public void addLeadingDepartment(String name) {
-        Human leading = new Human(name);
-
-        if (this.code == 1) {
-            leading.addResponsibility(Responsibility.get(0));
-            leading.addResponsibility(Responsibility.get(1));
-            leading.addResponsibility(Responsibility.get(2));
-        }
-
-        if (this.code == 2) {
-            leading.addResponsibility(Responsibility.get(0));
-            leading.addResponsibility(Responsibility.get(1));
-            leading.addResponsibility(Responsibility.get(2));
-        }
-
-        if (this.code == 3) {
-            leading.addResponsibility(Responsibility.get(0));
-            leading.addResponsibility(Responsibility.get(1));
-            leading.addResponsibility(Responsibility.get(2));
-            leading.addResponsibility(Responsibility.get(3));
-        }
-        this.departmentLeadings.add(leading);
-        this.numberHuman++;
-    }
-
-    public void addWorkerDepartment(@NotNull Human leading, String name) {
-        Human worker = new Human(name);
-
-        if (this.code == 1) {
-            worker.addResponsibility(Responsibility.get(2));
-            worker.addResponsibility(Responsibility.get(3));
-        }
-
-        if (this.code == 2) {
-            worker.addResponsibility(Responsibility.get(1));
-            worker.addResponsibility(Responsibility.get(2));
-            worker.addResponsibility(Responsibility.get(3));
-        }
-
-        if (this.code == 3) {
-            worker.addResponsibility(Responsibility.get(1));
-            worker.addResponsibility(Responsibility.get(2));
-            worker.addResponsibility(Responsibility.get(3));
-        }
-        leading.getWorkers().add(worker);
-        this.numberHuman++;
+    public String getRole() {
+        return role;
     }
 }

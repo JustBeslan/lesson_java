@@ -8,43 +8,38 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class ISR1 {
+    private int id;
     private String name;
     private int numberDays;
-    private Human projectManagers;
-    private List<Department> departments;
+    private Map<Integer, Human> workers = new HashMap<>();
 
     @Contract(pure = true)
-    public ISR1(String name, int numberDays, List<Department> departments, Human projectManagers) {
+    public ISR1(int id, String name, int numberDays) {
+        this.id = id;
         this.name = name;
         this.numberDays = numberDays;
-        this.projectManagers = projectManagers;
-        this.departments = departments;
     }
 
-    public Human getProjectManagers() {
-        return projectManagers;
+    public int getId() {
+        return id;
     }
 
-    public void setProjectManagers(Human projectManagers) {
-        this.projectManagers = projectManagers;
+    public String getName() {
+        return name;
     }
 
-    public List<Human> findWorkersDepartment(Department department) {
-        List<Human> workersDepartment = new ArrayList<>();
-        for (Human human : department.getDepartmentLeadings()) {
-            workersDepartment.add(human);
-            workersDepartment.addAll(human.getWorkers());
-        }
-        return workersDepartment;
+    public Map<Integer, Human> getWorkers() {
+        return workers;
     }
 
-    public List<Department> getDepartments() {
-        return departments;
+    public void setWorkers(Map<Integer, Human> workers) {
+        this.workers = workers;
     }
 
     public void inFromFile() {
@@ -60,7 +55,7 @@ public class ISR1 {
                     Paths.get("src/main/resources/indJSON.txt"));                                // Для создания экземпляра класса Path, используем статический метод get класса Paths, позволяющего создать путь из строки или URI.
             String info = streamInfoFromFile.collect(Collectors.toCollection(ArrayList::new)).get(0);
             ISR1 data1 = gson.fromJson(info, ISR1.class);
-            System.out.println("Project manager : " + data1.getProjectManagers().getNameSurname());
+            data1.getWorkers().values().forEach(n -> System.out.println(n.getName()));
         } catch (IOException e) {
             e.printStackTrace();
         }

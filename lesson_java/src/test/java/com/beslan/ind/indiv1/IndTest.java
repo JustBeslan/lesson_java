@@ -1,91 +1,131 @@
 package com.beslan.ind.indiv1;
 
-import org.junit.jupiter.api.AfterAll;
+import org.jetbrains.annotations.NotNull;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 class IndTest {
-    private static List<Human> workers = new ArrayList<>();
-    private static ISR1 project;
+    private List<Human> workers = new ArrayList<>();
+    private List<ISR1> projects = new ArrayList<>();
 
-    @BeforeAll
-    public static void createData() {
+    @BeforeEach
+    public void createData() {
+//====================Attempt Number2=============================
+        Human project1Manager1 = new Human("Роман Акрилов", 31);
+        Human project1Manager2 = new Human("Николай Иванов", 43);
+        ISR1 project1 = new ISR1(1, "Online Shop", 364);
+        project1Manager1.addProject(project1, 0);
+        workers.add(project1Manager1);
+        project1Manager2.addProject(project1, 0);
+        workers.add(project1Manager2);
 
-        Human project1Manager = new Human("Николай Иванов");
-        project1Manager.setResponsibility(Arrays.asList(
-                "Постановка задач перед участниками проекта",
-                "Мониторинг работ"
-        ));
-//==============================================================
-        Human worker1 = new Human("Анатолий Петров");
-        workers.add(worker1);
-        Human worker2 = new Human("Сергей Иванов");
-        workers.add(worker2);
-        Human worker3 = new Human("Сергей Иванов");
-        workers.add(worker3);
+        //------------------------
+        Human worker1_1_1 = new Human("Трофим Григорьевич", 31);
+        worker1_1_1.addProject(project1, 1.0);
+        workers.add(worker1_1_1);
+        Human worker1_1_2 = new Human("Серена Петровна", 32);
+        worker1_1_2.addProject(project1, 1.0);
+        workers.add(worker1_1_2);
+        Human worker1_1_3 = new Human("Артемий Ковров", 23);
+        worker1_1_3.addProject(project1, 1.1);
+        workers.add(worker1_1_3);
+        Human worker1_1_4 = new Human("Артем Грол", 22);
+        worker1_1_4.addProject(project1, 1.1);
+        workers.add(worker1_1_4);
+        Human worker1_1_5 = new Human("Адриано Челентано", 22);
+        worker1_1_5.addProject(project1, 1.1);
+        workers.add(worker1_1_5);
+        worker1_1_1.getDepartmentsProject().get(project1.getId()).setWorkers(Arrays.asList(worker1_1_3, worker1_1_4));
+        worker1_1_2.getDepartmentsProject().get(project1.getId()).setWorkers(Arrays.asList(worker1_1_5));
+        //------------------------
+        Human worker1_2_1 = new Human("Кирилл Романов", 27);
+        worker1_2_1.addProject(project1, 2.0);
+        workers.add(worker1_2_1);
+        Human worker1_2_2 = new Human("Петра Ровано", 27);
+        worker1_2_2.addProject(project1, 2.0);
+        workers.add(worker1_2_2);
+        Human worker1_2_3 = new Human("Григорий Семенович", 28);
+        worker1_2_3.addProject(project1, 2.1);
+        workers.add(worker1_2_3);
+        Human worker1_2_4 = new Human("Владимир Иванов", 22);
+        worker1_2_4.addProject(project1, 2.1);
+        workers.add(worker1_2_4);
+        Human worker1_2_5 = new Human("Евгения Иванова", 32);
+        worker1_2_5.addProject(project1, 2.1);
+        workers.add(worker1_2_5);
+        worker1_2_1.getDepartmentsProject().get(project1.getId()).setWorkers(Arrays.asList(worker1_2_4));
+        worker1_2_2.getDepartmentsProject().get(project1.getId()).setWorkers(Arrays.asList(worker1_2_3, worker1_2_5));
+        //------------------------
+        Human worker1_3_1 = new Human("Григорий Иванович", 28);
+        worker1_3_1.addProject(project1, 3.0);
+        workers.add(worker1_3_1);
+        Human worker1_3_2 = new Human("Сергей Иванов", 28);
+        worker1_3_2.addProject(project1, 3.1);
+        workers.add(worker1_3_2);
+        Human worker1_3_3 = new Human("Анатолий Петров", 30);
+        worker1_3_3.addProject(project1, 3.1);
+        workers.add(worker1_3_3);
+        worker1_3_1.getDepartmentsProject().get(project1.getId()).setWorkers(Arrays.asList(worker1_3_2, worker1_3_3));
 
-        Human teamLead1 = new Human("Владимир Иванов");
-        teamLead1.setWorkers(Arrays.asList(worker1, worker2));
-        workers.add(teamLead1);
-        Human teamLead2 = new Human("Григорий Семенович");
-        teamLead2.setWorkers(Arrays.asList(worker3));
-        workers.add(teamLead2);
-//==============================================================
-        Human worker4 = new Human("Петра Ровано");
-        workers.add(worker4);
-        Human worker5 = new Human("Адриано Челентано");
-        workers.add(worker5);
-        Human worker6 = new Human("Артем Грол");
-        workers.add(worker6);
-        Human worker7 = new Human("Артемий Ковров");
-        workers.add(worker7);
+        projects.add(project1);
+//====================Attempt Number2=============================
+        ISR1 project2 = new ISR1(2, "Snowing", 36);
+        project1Manager1.addProject(project2, 0);
+        //------------------------
+        worker1_1_1.addProject(project2, 1.0);
+        worker1_1_3.addProject(project2, 1.1);
+        worker1_1_4.addProject(project2, 1.1);
+        worker1_1_5.addProject(project2, 1.1);
+        worker1_1_1.getDepartmentsProject().get(project2.getId()).setWorkers(Arrays.asList(worker1_1_3, worker1_1_4, worker1_1_5));
+        //------------------------
+        worker1_2_3.addProject(project2, 2.0);
+        worker1_2_4.addProject(project2, 2.1);
+        worker1_2_5.addProject(project2, 2.1);
+        worker1_2_3.getDepartmentsProject().get(project2.getId()).setWorkers(Arrays.asList(worker1_2_4, worker1_2_5));
+        //------------------------
+        worker1_3_2.addProject(project2, 3.0);
+        worker1_3_3.addProject(project2, 3.1);
+        worker1_3_2.getDepartmentsProject().get(project2.getId()).setWorkers(Arrays.asList(worker1_3_3));
 
-        Human teamLead3 = new Human("Семен Петрович");
-        teamLead3.setWorkers(Arrays.asList(worker4, worker5));
-        workers.add(teamLead3);
-        Human teamLead4 = new Human("Григорий Иванович");
-        teamLead4.setWorkers(Arrays.asList(worker6, worker7));
-        workers.add(teamLead4);
-//================================================================
-        Human worker8 = new Human("Кирилл Романов");
-        workers.add(worker8);
-        Human worker9 = new Human("Роман Акрилов");
-        workers.add(worker9);
-
-        Human teamLead5 = new Human("Трофим Григорьевич");
-        teamLead5.setWorkers(Arrays.asList(worker8, worker9));
-        workers.add(teamLead5);
-//================================================================
-        Department department1 = new Department(1, Arrays.asList(teamLead1, teamLead2));
-        Department department2 = new Department(2, Arrays.asList(teamLead3, teamLead4));
-        Department department3 = new Department(3, Arrays.asList(teamLead5));
-
-        project = new ISR1("Online Shop", 364, Arrays.asList(department1, department2, department3), project1Manager);
-    }
-
-    @AfterAll
-    public static void clearData() {
-        workers = null;
-        project = null;
+        projects.add(project2);
     }
 
     @Test
     public void indTest() {
-        Assertions.assertEquals(Arrays.asList(workers.get(0), workers.get(1)), workers.get(3).getWorkers());
+        Assertions.assertTrue(projects.get(0).getWorkers().containsValue(workers.get(3)));
+        Assertions.assertFalse(projects.get(1).getWorkers().containsValue(workers.get(3)));
 
-        Assertions.assertEquals(Arrays.asList(
-                workers.get(3),
-                workers.get(0),
-                workers.get(1),
-                workers.get(4),
-                workers.get(2)
-                ),
-                project.findWorkersDepartment(project.getDepartments().get(0)));
-        project.inFromFile();
+        Assertions.assertEquals(Arrays.asList(workers.get(0), workers.get(1)),
+                findManagersProject(projects.get(0)));
+
+        projects.get(0).inFromFile();
+
+        Human newWorker = new Human("Марк Де Блор", 28);
+        newWorker.addProject(projects.get(0), 0);
+        workers.add(newWorker);
+
+        Assertions.assertNotEquals(Arrays.asList(workers.get(0), workers.get(1)),
+                findManagersProject(projects.get(0)));
+        Assertions.assertEquals(Arrays.asList(workers.get(0), workers.get(1), workers.get(15)),
+                findManagersProject(projects.get(0)));
+
+        Assertions.assertEquals(Stream.of(workers.get(2)).collect(Collectors.toSet()), workers.get(5).findTeamLeadsProject(projects));
+//        workers.get(10).outInfoHuman(projects);
+    }
+
+    public List<Human> findManagersProject(@NotNull ISR1 project) {
+        List<Human> res = new ArrayList<>();
+        for (Human human : project.getWorkers().values()) {
+            Department department = human.getDepartmentsProject().get(project.getId());
+            if (department.getCode() == 0) res.add(human);
+        }
+        return res;
     }
 }
