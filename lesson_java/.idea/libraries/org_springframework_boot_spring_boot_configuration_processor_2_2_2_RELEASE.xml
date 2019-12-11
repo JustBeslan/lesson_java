@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="org.springframework.boot:spring-boot-configuration-processor:2.2.2.RELEASE" type="repository">
+    <properties maven-id="org.springframework.boot:spring-boot-configuration-processor:2.2.2.RELEASE" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/springframework/boot/spring-boot-configuration-processor/2.2.2.RELEASE/spring-boot-configuration-processor-2.2.2.RELEASE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

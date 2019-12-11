@@ -11,14 +11,14 @@ class FilesWordsCounterTest {
     @Test
     void FilesWordsCounterTest1() throws IOException {
         FilesWordsCounter filesWordsCounter1 = new FilesWordsCounter("src/main/resources/test1/");
-        assertEquals(filesWordsCounter1.col("Hello"),4);
-        assertEquals(filesWordsCounter1.col("Good"),1);
-        assertEquals(filesWordsCounter1.col("-"),1);
-        assertEquals(filesWordsCounter1.col("Конец."),1);
-        assertEquals(filesWordsCounter1.col("Еще"),3);
-        assertEquals(filesWordsCounter1.col("одна"),3);
-        assertEquals(filesWordsCounter1.col("строка"),3);
-        assertEquals(filesWordsCounter1.col("текста."),3);
+        assertEquals(filesWordsCounter1.col("Hello"), (Integer) 4);
+        assertEquals(filesWordsCounter1.col("Good"), (Integer) 1);
+        assertEquals(filesWordsCounter1.col("-"), (Integer) 1);
+        assertEquals(filesWordsCounter1.col("Конец."), (Integer) 1);
+        assertEquals(filesWordsCounter1.col("Еще"), (Integer) 3);
+        assertEquals(filesWordsCounter1.col("одна"), (Integer) 3);
+        assertEquals(filesWordsCounter1.col("строка"), (Integer) 3);
+        assertEquals(filesWordsCounter1.col("текста."), (Integer) 3);
         assertNull(filesWordsCounter1.col("Слово"));
     }
     @Test

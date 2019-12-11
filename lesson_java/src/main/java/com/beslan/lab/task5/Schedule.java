@@ -14,6 +14,10 @@ class Schedule {
         return lessons;
     }
 
+    public void addLesson(Lesson lesson) {
+        this.lessons.add(lesson);
+    }
+
     public List<Lesson> findLessons(Student student) {
         List<Lesson> lessons1 = new ArrayList<>();
         for (Lesson lesson : lessons) {

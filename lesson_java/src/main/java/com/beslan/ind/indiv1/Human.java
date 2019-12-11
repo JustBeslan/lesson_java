@@ -44,9 +44,6 @@ public class Human {
     }
 
     public void addProject(@NotNull ISR1 project, double idDepartment) {
-        Map<Integer, Human> workersProject = project.getWorkers();
-        workersProject.put(project.getWorkers().size() + 1, this);
-        project.setWorkers(workersProject);
         this.roleInProjects.put(project.getId(), new Role(idDepartment));
     }
 

@@ -1,7 +1,6 @@
 package com.beslan.ind.indiv1;
 
 import com.google.gson.Gson;
-import org.jetbrains.annotations.Contract;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,7 +18,6 @@ public class ISR1 {
     private int numberDays;
     private Map<Integer, Human> workers = new HashMap<>();
 
-    @Contract(pure = true)
     public ISR1(int id, String name, int numberDays) {
         this.id = id;
         this.name = name;
@@ -59,6 +57,10 @@ public class ISR1 {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void addWorker(Human human) {
+        this.workers.put(this.workers.size() + 1, human);
     }
 
 }

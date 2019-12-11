@@ -1,0 +1,1 @@
+{"lessons":[{"localTime":{"hour":13,"minute":10,"second":0,"nano":0},"group":{"id":1,"students":[{"id":1,"name":"Beslan"},{"id":2,"name":"Ivan"}],"name_group":"42"},"subject":"Web","educator":{"id":1,"name":"Sinitsa"},"dayOfWeek":"MONDAY","number":4}]}
